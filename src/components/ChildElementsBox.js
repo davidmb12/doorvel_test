@@ -23,11 +23,10 @@ export const ChildElementsBox = ({parent}) => {
         <>
             {
                 data.length > 0 ? (
-                <Grid container spacing={2} margin={2}>
-
+                <Grid container spacing={2} margin={2} >
                     <Grid item xs={12} sm container >
-                      <Grid item xs container direction="column" spacing={2} className='bg-black'>
-                        <Grid item xs>
+                      <Grid item xs container direction="column" spacing={2} className=''>
+                        <Container >
                           <Typography gutterBottom variant="subtitle1" component="div">
                             {data[currentSelected]['name']}
                           </Typography>
@@ -37,7 +36,7 @@ export const ChildElementsBox = ({parent}) => {
                           <Typography variant="body2" color="text.secondary">
                             {data[currentSelected]['']}
                           </Typography>
-                        </Grid>
+                        </Container>
                         <Grid item>
                           
                         </Grid>
