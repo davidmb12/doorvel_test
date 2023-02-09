@@ -1,17 +1,14 @@
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { fetchDataParent } from '@/helpers/fetchData';
-import { useEffect, useState } from 'react';
-import { Card } from '@mui/material';
+import { useContext, useState } from 'react';
 import { ChildElementsBox } from './ChildElementsBox';
+import { DataContext } from '@/pages';
 
 
 
 function TabPanel(props) {
   const { value, index, id, ...other } = props;
-
   return (
     <div
       role="tabpanel"
@@ -21,7 +18,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <ChildElementsBox parent={id}></ChildElementsBox>
+        <ChildElementsBox parentId={id}></ChildElementsBox>
       )}
     </div>
   );
@@ -30,16 +27,11 @@ function TabPanel(props) {
 
 
 export const  VerticalTabs=()=> {
-    const [data,setData]= useState([]);
+    const {parentData} = useContext(DataContext);
     const [value, setValue] = useState(0);
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
-
-    useEffect(() => {
-        fetchDataParent(setData);
-    }, [])
-    
     
   return (
     <Box
@@ -53,11 +45,11 @@ export const  VerticalTabs=()=> {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-        {data.map((element)=>{
+        {parentData.map((element)=>{
             return <Tab label={element.name}>{element.name}</Tab>
         })}
       </Tabs>
-      {data.map((element,index)=>{
+      {parentData.map((element,index)=>{
         return <TabPanel value={value} index={index} id={element.id} ></TabPanel>
       })}
     </Box>

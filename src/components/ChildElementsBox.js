@@ -1,17 +1,18 @@
-import { fetchDataChild } from "@/helpers/fetchData";
-import { Image } from "@mui/icons-material";
-import {  ButtonBase, Grid, ListItem, Pagination, Typography } from "@mui/material";
-import { Box, Container } from "@mui/system";
-import { useEffect, useState } from "react";
+import { DataContext } from "@/pages";
+import {   Grid,  Pagination, Typography } from "@mui/material";
+import { Container } from "@mui/system";
+import { useContext, useEffect, useState } from "react";
 
-export const ChildElementsBox = ({parent}) => {
-    const [data, setData] = useState([]);
+export const ChildElementsBox = ({parentId}) => {
+    const {childData} = useContext(DataContext);
     const [currentSelected,setCurrentSelected] = useState(0);
+    const [data,setData] = useState(childData[0]);
 
-    useEffect(()=>{
-        fetchDataChild(parent,setData);
-    },[]);
-
+    useEffect(() => {
+        const filteredData = data.filter(child =>child.amenity_parent == parentId);
+        setData(filteredData);
+    }, [])
+    
     const handleOnPageChange =(selected)=>{
         setCurrentSelected(selected);
     }
@@ -31,7 +32,6 @@ export const ChildElementsBox = ({parent}) => {
                           <Typography variant="body2" gutterBottom>
                           </Typography>
                           <Typography variant="body2" color="text.secondary">
-                            {data[currentSelected]['']}
                           </Typography>
                         </Container>
                         <Grid item>

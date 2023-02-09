@@ -1,17 +1,24 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import {ChildElementsBox} from '@/components/ChildElementsBox'
-import { useState } from 'react'
 import { VerticalTabs } from '@/components/VerticalTabs'
+import { createContext, useEffect, useState } from 'react'
+import { fetchDataChild, fetchDataParent } from '@/helpers/fetchData'
 
-const inter = Inter({ subsets: ['latin'] })
+
+export const DataContext = createContext({})
+
+
 export default function Home() {
-
- 
+  const [parentData,setParentData] = useState([]);
+  const [childData,setChildData] = useState([]);
+  useEffect(() => {
+    fetchDataParent(setParentData);  
+    fetchDataChild(setChildData);
+  }, [])
+  
+  
   return (
-    <>
+    <DataContext.Provider value={{parentData:parentData,childData:[childData,setChildData]}}>
       <Head>
         <title>Doorvel Test</title>
         <meta name="description" content="" />
@@ -21,6 +28,6 @@ export default function Home() {
       <main className={styles.main}>
         <VerticalTabs></VerticalTabs>
       </main>
-    </>
+    </DataContext.Provider>
   )
 }
