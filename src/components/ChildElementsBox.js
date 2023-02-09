@@ -6,16 +6,13 @@ import { useEffect, useState } from "react";
 
 export const ChildElementsBox = ({parent}) => {
     const [data, setData] = useState([]);
-
     const [currentSelected,setCurrentSelected] = useState(0);
-    const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        fetchDataChild(parent,setData,setLoading);
+        fetchDataChild(parent,setData);
     },[]);
 
     const handleOnPageChange =(selected)=>{
-        
         setCurrentSelected(selected);
     }
     return (
@@ -26,7 +23,7 @@ export const ChildElementsBox = ({parent}) => {
                 <Grid container spacing={2} margin={2} >
                     <Grid item xs={12} sm container >
                       <Grid item xs container direction="column" spacing={2} className=''>
-                        <Container >
+                        <Container>
                           <Typography gutterBottom variant="subtitle1" component="div">
                             {data[currentSelected]['name']}
                           </Typography>

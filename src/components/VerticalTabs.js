@@ -31,16 +31,13 @@ function TabPanel(props) {
 
 export const  VerticalTabs=()=> {
     const [data,setData]= useState([]);
-    const [parentElements,setParentElements]=useState([]);
-
-    const [isLoading,setIsLoading] = useState(false);
     const [value, setValue] = useState(0);
-    const handleChange = (event, newValue) => {
+    const handleChange = ( newValue) => {
       setValue(newValue);
     };
 
     useEffect(() => {
-        fetchDataParent(setData,setIsLoading);
+        fetchDataParent(setData);
     }, [])
     
     
