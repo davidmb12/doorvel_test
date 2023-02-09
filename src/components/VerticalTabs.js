@@ -32,7 +32,7 @@ function TabPanel(props) {
 export const  VerticalTabs=()=> {
     const [data,setData]= useState([]);
     const [value, setValue] = useState(0);
-    const handleChange = ( newValue) => {
+    const handleChange = (event, newValue) => {
       setValue(newValue);
     };
 
