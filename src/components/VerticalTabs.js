@@ -8,7 +8,7 @@ import { DataContext } from '@/pages';
 
 
 function TabPanel(props) {
-  const { value, index, id, ...other } = props;
+  const { value,children, index, id, ...other } = props;
   return (
     <div
       role="tabpanel"
@@ -46,11 +46,11 @@ export const  VerticalTabs=()=> {
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
         {parentData.map((element)=>{
-            return <Tab label={element.name}>{element.name}</Tab>
+            return <Tab label={element.name} key={element.id}></Tab>
         })}
       </Tabs>
       {parentData.map((element,index)=>{
-        return <TabPanel value={value} index={index} id={element.id} ></TabPanel>
+        return <TabPanel key={element.id} value={value} index={index} id={element.id} ></TabPanel>
       })}
     </Box>
   );

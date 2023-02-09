@@ -34,9 +34,7 @@ export const ChildElementsBox = ({parentId}) => {
                           <Typography variant="body2" color="text.secondary">
                           </Typography>
                         </Container>
-                        <Grid item>
-                          
-                        </Grid>
+                        
                       </Grid>
                       
                     </Grid>
